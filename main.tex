@@ -1,0 +1,41 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{tpcs}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\textheight 24cm
+\textwidth 16cm
+\oddsidemargin 0cm
+\topmargin -0.5cm
+
+\usepackage{listings}
+\lstset{
+  language=[Sharp]C,
+  basicstyle=\ttfamily\small,
+  frame=single,
+  keywordstyle=\bfseries,
+  showstringspaces=false,
+}
+\title {Minimips}
+\begin{document}
+\enteteTPCS{TP C\# avancé: Emulateur MIPS}{}{}
+		
+% Introduction
+\input{intro}
+
+% Cours
+\input{cours}
+
+% Ex
+\input{ex}
+
+\section{Documents}
+
+http://inst.eecs.berkeley.edu/\~cs61c/resources/MIPS\_Green\_Sheet.pdf\\
+\indent http://www.mrc.uidaho.edu/mrc/people/jff/digital/MIPSir.html
+\begin{center}
+    \textbf{Greed \& Neodyblue}
+\end{center}
+
+\end{document}

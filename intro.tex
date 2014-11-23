@@ -1,0 +1,19 @@
+\section{Introduction}
+
+\subsection{Objectifs}
+
+L'objectif de ce TP est d'émuler un microprocesseur MIPS simplifié.\\
+Pour cela nous vous présenterons d'abord ce CPU afin d'avoir une vision globale de ce qu'il faut implémenter puis nous vous guiderons ensuite sur l'architecture à adopter.
+
+\subsection{MIPS}
+
+	Microprocessor without Interlocked Pipeline Stages est une architecture de type Reduced Instruction Set Computing (\textbf{RISC}).\\
+	\indent L'instruction Set est la liste des instructions reconnues par un processeur. Dans le cas des processeurs que l'on trouve dans les ordinateurs grand publique (Intel x86/64) le jeu d'instruction est très large (\textbf{CISC}) .\\
+    \indent Au contraire dans le cas d'une architecture \textbf{RISC}, le jeu d'instruction est réduit au minimum. De plus les instructions sont facile à décoder et ont un comportement simple.\\
+    
+    À l'origine l'analyse des séquences de codes montrait que la grande majorité des instructions disponibles étaient très peu utilisées. Ainsi, seul un jeu très réduit d'instructions était principalement utilisé dans les programmes. C'est pourquoi l'architecture RISC fait le choix de limiter le jeu d'instructions à seulement quelques-unes, imposant à toutes, en contrepartie, un nombre identique de cycles pour s'exécuter. \\
+    
+    L'avantage de cette technique est que, désormais, le processeur se comporte comme s'il y avait une instruction exécutée par cycle d'horloge. Cela ayant pour conséquence une division du temps d'exécution pour toutes les instructions de base.
+
+
+\newpage
