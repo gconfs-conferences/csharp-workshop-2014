@@ -1,68 +1,88 @@
 \subsection{Partie 1 : Les objets}
-Commençons par créer les différentes classes que nous allons manipuler.\\
-Vous allez devoir créer plusieurs classes:
+Commençons par créer les différentes classes
+que nous allons manipuler.\\ Vous allez devoir créer plusieurs classes:
 \begin{itemize}
-\item CPU
-\item ALU
-\item Decoder
-\item Environment
-\item Instruction
-\item ProgramLoader
-\end{itemize}
-NB: Relisez le cours afin de savoir quelle classe possède quel champ. Il peut être intéressant que le CPU connaisse son environnement et inversement.
+  \item CPU
+  \item ALU
+  \item Decoder
+  \item Environment
+  \item Instruction
+  \item ProgramLoader 
+\end{itemize} 
+NB: Relisez le cours afin de
+        savoir quelle classe possède quel champ. Il peut être intéressant que le
+        CPU connaisse son environnement et inversement.
 
-\subsection{Partie 2 : Les Instruction}
-La classe Instruction prendra dans le constructeur la valeur de tous les éléments (obtenus via le Decoder que l'on verra plus tard) de tous les types d'instruction et les rendra accessibles via des champs.\\
-Par exemple:
-\begin{code}
-Instruction i = new Instruction(rd, rs, rt, ......);
-int a = i.Rd;
-int b = i.Rs;
-int c = i.Immediate;
-int d = i.TargetAddress;
+\subsection{Partie 2 : Les Instruction} La classe Instruction prendra dans le
+constructeur la valeur de tous les éléments (obtenus via le Decoder que l'on
+verra plus tard) de tous les types d'instruction et les rendra accessibles via
+des champs.\\ Par exemple: 
+\begin{code} 
+  Instruction i = new Instruction(rd, rs, rt, ......); 
+  int a = i.Rd;
+  int b = i.Rs;
+  int c = i.Immediate;
+  int d = i.TargetAddress;
 \end{code}
-Comme vous pouvez le voir, on ne s'occupe pas pour l'instant du type d'instruction, on utilise les champs des 3 instructions et en fonction de son type que l'on verra plus tard, on ne se servira que de certains champs.
+Comme vous pouvez le voir, on ne s'occupe pas pour
+l'instant du type d'instruction, on utilise les champs des 3 instructions et en
+fonction de son type que l'on verra plus tard, on ne se servira que de certains
+champs.
 
 \subsection{Partie 3 : Le ProgramLoader}
-ProgramLoader sera une classe static qui contiendra une methode du nom de votre choix qui prendra en paramètre un environment, un path et qui va charger en RAM le binaire.\\
+ProgramLoader sera une classe static
+qui contiendra une methode du nom de votre choix qui prendra en paramètre un
+environment, un path et qui va charger en RAM le binaire.\\
 
-En utilisant les fonctions de lecture de fichiers vous aller devoir charger le binaire dans la RAM de votre programme. Il suffit juste de lire byte par byte et de mettre la donnée à la bonne adresse mémoire.
+En utilisant les fonctions de lecture de fichiers vous aller devoir charger le
+binaire dans la RAM de votre programme. Il suffit juste de lire byte par byte et
+de mettre la donnée à la bonne adresse mémoire.
 
 \subsection{Partie 4 : Le décodage des instructions}
 
-Grace aux fonctions de bit masking ainsi que le cours que vous venez de lire, vous allez devoir décoder une instruction.  Ce n'est pas dans cette partie que vous aurez à gérer le type de l'instruction.\\
+Grace aux fonctions de bit masking ainsi que le cours que vous venez de lire,
+vous allez devoir décoder une instruction.  Ce n'est pas dans cette partie que
+vous aurez à gérer le type de l'instruction.\\
 
 Voici quelques exemples qui pourons vous servir :
-\begin{code}
-int a = 0x0000FABB & 0x0000000F; // a = 0x0000000B
-int b = 0x0000000C | 0x00000003; // b = 0x0000000F
-int c = (0x0030FABB & 0x00F00000) >> 24; // c = 0x00000003
-
+\begin{code} 
+  int a = 0x0000FABB & 0x0000000F;
+  // a = 0x0000000B
+  int b = 0x0000000C | 0x00000003;
+  // b = 0x0000000F
+  int c = (0x0030FABB & 0x00F00000) >> 24;
+  // c = 0x00000003
 \end{code}
 
 
 \subsection{Partie 5 : La stack}
-Dans la classe CPU, nous allons faire les fonctions de manipulation de la stack. Votre implémentation devra contenir des fonction push et pop qui prennent un tableau de byte en paramètre et qui empile tous les élements de ce tableau (attention: l'élement 0 du tableau devra être au sommet). 
-Une fois cette fonction faite, créez d'autre surcharges qui prennent en paramètre soit un int (32 bits) soit un short (16 bits) soit un byte(8 bits). \\
-Vous utiliserez ensuite la classe BitConverter qui va vous permettre de transformer un type primitif en bytes et vice-versa.
+Dans la classe CPU, nous allons faire les
+fonctions de manipulation de la stack. Votre implémentation devra contenir des
+fonction push et pop qui prennent un tableau de byte en paramètre et qui empile
+tous les élements de ce tableau (attention: l'élement 0 du tableau devra être au
+sommet).  Une fois cette fonction faite, créez d'autre surcharges qui prennent
+en paramètre soit un int (32 bits) soit un short (16 bits) soit un byte(8 bits).
+\\ Vous utiliserez ensuite la classe BitConverter qui va vous permettre de
+transformer un type primitif en bytes et vice-versa.
 \begin{code}
-int a = 5;
-byte[] bytes_arr = BitConverter.GetBytes(a);
-int b = BitConverter.ToInt32(bytes_arr);
+  int a = 5;
+  byte[] bytes_arr = BitConverter.GetBytes(a);
+  int b =
+  BitConverter.ToInt32(bytes_arr);
 \end{code}
-Vous pouvez aussi utiliser ToInt16(), servez-vous de ces fonctions pour implémenter de la même manière les fonctions pop.
+Vous pouvez aussi utiliser ToInt16(), servez-vous de ces fonctions pour 
+implémenter de la même manière les fonctions pop.
 \begin{code}
-#region stack push
+  #region stack push
         public void stack_push(int data);
 
         public void stack_push(short data);
 
         public void stack_push(byte data);
 
-        public void stack_push(byte[] data);
-#endregion
+        public void stack_push(byte[] data); #endregion
 
-#region stack pop
+  #region stack pop
         public int stack_pop_int();
         
         public short stack_pop_short();
@@ -70,43 +90,52 @@ Vous pouvez aussi utiliser ToInt16(), servez-vous de ces fonctions pour impléme
         public byte stack_pop_byte();
         
         public byte[] stack_pop_bytes(int size);
-#endregion
+  #endregion
 \end{code}
 
-Une fois les fonctions stack\_push(byte[] data) et stack\_pop\_bytes(int size) créées, les autres fonctions se font en une seule ligne.\\
-Si vous vous demandez l'intérêt de ceci, c'est parce que vous aurez des instructions qui pourront push ou pop soit 32 bits, soit 16 bits soit 8 bits.
+Une fois les fonctions stack\_push(byte[] data) et stack\_pop\_bytes(int size)
+créées, les autres fonctions se font en une seule ligne.\\ Si vous vous demandez
+l'intérêt de ceci, c'est parce que vous aurez des instructions qui pourront push
+ou pop soit 32 bits, soit 16 bits soit 8 bits.
 
-Le CPU possède un registre stack pointer (SP) qui pointe vers le sommet de la pile, il s'agit du 30ième registre général (index 29).\\
-Pensez à modifier votre SP lors des fonctions push et pop afin de le mettre à jours, servez-vous en également pour vérifier qu'une opération ne déplace pas le SP au delà des limites de la stack. Un getter et setter pour un champ SP de la classe CPU seraient intéressants. Un champ StackBase également afin de ne pas pop sur une pile vide. N'hésitez pas à déclencher une exception.
+Le CPU possède un registre stack pointer (SP) qui pointe vers le sommet de la
+pile, il s'agit du 30ième registre général (index 29).\\ Pensez à modifier votre
+SP lors des fonctions push et pop afin de le mettre à jours, servez-vous en
+également pour vérifier qu'une opération ne déplace pas le SP au delà des
+limites de la stack. Un getter et setter pour un champ SP de la classe CPU
+seraient intéressants. Un champ StackBase également afin de ne pas pop sur une
+pile vide. N'hésitez pas à déclencher une exception.
 \begin{code}
-throw new Exception("Votre message");
+  throw new Exception("Votre message");
 \end{code}
 
 \subsection{Partie 6 : L'ALU}
 
-L'ALU contiendra toutes les fonctions arithmétiques et logiques. L'idéal serait une fonction qui prenne un objet Instruction en paramètre et appelle la fonction correspondante.
-La classe Dictionnary<type1, type2> vous permet d'établir une correspondance entre des clefs de type \textit{type1} et des valeurs de type \textit{type2}.\\
-Utilisez un dictionnaire permettant d'associer un opcode/funct à un delegate vous permettra de récuperer facilement la fonction correspondante à une instruction.\\
-Voici quelques exemples d'utilisation de la classe dictionnaire qui vous seront utiles:
+L'ALU contiendra toutes les fonctions arithmétiques et logiques. L'idéal serait
+une fonction qui prenne un objet Instruction en paramètre et appelle la fonction
+correspondante.  La classe Dictionnary<type1, type2> vous permet d'établir une
+correspondance entre des clefs de type \textit{type1} et des valeurs de type
+\textit{type2}.\\ Utilisez un dictionnaire permettant d'associer un opcode/funct
+à un delegate vous permettra de récuperer facilement la fonction correspondante
+à une instruction.\\ Voici quelques exemples d'utilisation de la classe
+dictionnaire qui vous seront utiles:
 \begin{code}
-// On veut associer un identifiant (clef) à une chaine de caractères (valeur)
-Dictionary<int, string> ids = new Dictionary<int, string>();
-ids.Add(3, "Hello !"); // La clef 3 est associée à la valeur "Hello !"
-ids.Add(1, "test");
-ids.Add(42, "the game");
+  // On veut associer un identifiant (clef) à une chaine de caractères (valeur)
+  Dictionary<int, string> ids = new Dictionary<int, string>();
 
-// Retourne la valeur associée à 3
-string value = ids[3];
-// Une exception est levée si la clef n'existe pas
-string error = ids[8];
+  ids.Add(3, "Hello!"); // La clef 3 est associée à la valeur "Hello!"
+  ids.Add(1, "test");
+  ids.Add(42, "the game");
 
-/*
-  La methode ContainsKey vous permettra de savoir
-  si une clef est présente ou non
-*/
-ids.ContainsKey(1); // Renvoie vrai
-ids.ContainsKey(13); // Renvoie faux
+  // Retourne la valeur associée à 3
+  string value = ids[3];
+  // Une exception est levée si la clef n'existe pas
+  string error = ids[8];
+
+  /*
+  La methode ContainsKey vous permettra de savoir si une clef est présente ou
+  non
+  */
+  ids.ContainsKey(1); // Renvoie vrai
+  ids.ContainsKey(13); // Renvoie faux
 \end{code}
-
-Vous allez avoir besoin 
-
