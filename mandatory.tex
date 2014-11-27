@@ -104,10 +104,10 @@ l'intérêt de ceci, c'est parce que vous aurez des instructions qui pourront pu
 ou pop soit 32 bits, soit 16 bits soit 8 bits.
 
 Le CPU possède un registre stack pointer (SP) qui pointe vers le sommet de la
-pile, il s'agit du 30ième registre général (index 29).\\ Pensez à modifier votre
-SP lors des fonctions push et pop afin de le mettre à jours, servez-vous en
-également pour vérifier qu'une opération ne déplace pas le SP au delà des
-limites de la stack. Un getter et setter pour un champ SP de la classe CPU
+pile, il s'agit du 30ième registre général (index 29).\\ Servez-vous en
+pour vérifier qu'une opération ne déplace pas le SP au delà des
+limites de la stack, cependant ce ne sera pas à vous de modifier sa valeur.\\
+Un getter et setter pour un champ SP de la classe CPU
 seraient intéressants. Un champ StackBase également afin de ne pas pop sur une
 pile vide. N'hésitez pas à déclencher une exception.
 \begin{code}
