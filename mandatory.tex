@@ -68,8 +68,12 @@ transformer un type primitif en bytes et vice-versa.
 \begin{code}
   int a = 5;
   byte[] bytes_arr = BitConverter.GetBytes(a);
+  /*
+    Le second paramètre de ToInt32 indique l'index du tableau
+    à partir duquel commencer la traduction, 0 dans notre cas.
+  */
   int b =
-  BitConverter.ToInt32(bytes_arr);
+  BitConverter.ToInt32(bytes_arr, 0);
 \end{code}
 Vous pouvez aussi utiliser ToInt16(), servez-vous de ces fonctions pour 
 implémenter de la même manière les fonctions pop.
