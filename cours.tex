@@ -124,7 +124,8 @@ des return, on dépilera les valeurs afin de restaurer le PC.\\ Il y a plusieurs
 manières d'implémenter la stack, soit en la faisant débuter à l'addresse la plus
 haute et en la faisant grandir vers les addresses basses, soit en la faisant
 débuter juste après la fin du segment .text et en la faisant grandir jusqu'a la
-limite de la RAM.
+limite de la RAM. Pour ce TP nous la ferons démarrer à l'adresse haute et elle
+grandira vers les adresses basses.
 
 \section {Les fichiers} Les programmes de test que nous vous donnerons (qui
 contiendront le segment .text) devront être copiés en RAM, mais avant il faudra
